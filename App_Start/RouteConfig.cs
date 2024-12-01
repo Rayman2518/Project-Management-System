@@ -31,6 +31,12 @@ namespace PMS
                 defaults: new { controller = "Authentication", action = "Logout" }
             );
 
+            routes.MapRoute(
+                name: "HandleLogin",
+                url: "{controller}/{action}",
+                defaults: new { controller = "Authentication", action = "HandleLogin" }
+            );
+
         }
     }
 }
