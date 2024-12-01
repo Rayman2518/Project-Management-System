@@ -18,6 +18,19 @@ namespace PMS
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Root", action = "Index", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+                name: "Login",
+                url: "{controller}/{action}",
+                defaults: new { controller = "Authentication", action = "Login" }
+            );
+
+            routes.MapRoute(
+                name: "Logout",
+                url: "{controller}/{action}",
+                defaults: new { controller = "Authentication", action = "Logout" }
+            );
+
         }
     }
 }

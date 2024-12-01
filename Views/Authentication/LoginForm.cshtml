@@ -1,7 +1,9 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Login";
 }
 
-<h2>Login Form</h2>
-
+<form action="@Url.Action("Login", "Authentication")" method="post" style="display: flex; flex-direction: column; justify-content: center; align-items: center; width: 50%; height: 50%; margin: auto; border: 1px solid black; padding: 20px;">
+    <input type="email" name="email" placeholder="Enter your email" style="margin: 10px 0; padding: 10px; width: 80%; border: 1px solid black;" required />
+    <input type="password" name="password" placeholder="Enter your password" style="margin: 10px 0; padding: 10px; width: 80%; border: 1px solid black;" required minlength="6" maxlength="10" />
+    <button type="submit" style="margin: 10px 0; padding: 10px 20px; background-color: black; color: white; border: none;">Submit</button>
+</form>

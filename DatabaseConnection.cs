@@ -43,3 +43,13 @@ namespace PMS
 
 
 }
+
+
+//using PMS;
+
+
+//// Create an instance of DatabaseConnection
+//DatabaseConnection dbConnection = new DatabaseConnection();
+
+//// Open the connection
+//dbConnection.Connect();

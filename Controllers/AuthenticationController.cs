@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PMS.Models;
 
 namespace PMS.Controllers
 {
     public class AuthenticationController : Controller
     {
-        // GET: Authentication
-        public ActionResult Index()
+        public ActionResult Login()
         {
-            return View();
+            return View("LoginForm");
         }
     }
 }
