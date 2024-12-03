@@ -1,7 +1,90 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Index";
 }
 
-<h2>Admin</h2>
+<style>
 
+   
+    .nav-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        height: 50px;
+        padding: 10px;
+        width: 90%;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+        cursor: pointer;
+    }
+
+        .nav-item:hover {
+            background-color: #f7f5f7;
+        }
+
+    .logout {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        height: 50px;
+        width: 90%;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+        cursor: pointer;
+    }
+    .logout:hover {
+        background-color: #f7f5f7;
+    }
+</style>
+
+<section style="display: grid; grid-template-columns: 15% 85%; height: 100vh; width: 100%;">
+    <nav style="background-color: #ffffff; height: 100%; display: flex; flex-direction: column;">
+        <div id="main-navbar-options" style="height: 80%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <div class="nav-item">
+                <img src="https://cdn-icons-png.flaticon.com/128/681/681443.png" style="width: 24px; height: 24px;" />
+                <h3>Users</h3>
+            </div>
+            <div class="nav-item">
+                <img src="https://cdn-icons-png.flaticon.com/128/1570/1570896.png" style="width: 24px; height: 24px;" />
+                <h3>Departments</h3>
+            </div>
+            <div class="nav-item">
+                <img src="https://cdn-icons-png.flaticon.com/128/1383/1383970.png" style="width: 24px; height: 24px;" />
+                <h3>Projects</h3>
+            </div>
+            <div class="nav-item">
+                <img src="https://cdn-icons-png.flaticon.com/128/3131/3131333.png" style="width: 24px; height: 24px;" />
+                <h3>Teams</h3>
+            </div>
+            <div class="nav-item">
+                <img src="https://cdn-icons-png.flaticon.com/128/944/944022.png" style="width: 26px; height: 26px;" />
+                <h3>Leads</h3>
+            </div>
+            <div class="nav-item">
+                <img src="https://cdn-icons-png.flaticon.com/128/1508/1508964.png" style="width: 24px; height: 24px;" />
+                <h3>Reports</h3>
+            </div>
+            <div class="nav-item">
+                <img src="https://cdn-icons-png.flaticon.com/128/1368/1368593.png" style="width: 24px; height: 24px;" />
+                <h3>Tasks</h3>
+            </div>
+            <div class="nav-item">
+                <img src="https://cdn-icons-png.flaticon.com/128/456/456283.png" style="width: 24px; height: 24px;" />
+                <h3>Profile</h3>
+            </div>
+        </div>
+
+        <div id="logout-div" style="height: 20%; display: flex; justify-content: center; align-items: center;">
+            <div class="logout">
+                <a href="@Url.Action("Logout", "Authentication")" style="display: flex; align-items: center; justify-content:space-evenly; text-decoration: none; color: inherit; width:100%; height:100%;">
+                    <img src="https://cdn-icons-png.flaticon.com/128/2529/2529508.png" style="width: 24px; height: 24px;" />
+                    <h3>Logout</h3>
+                </a>
+            </div>
+        </div>
+    </nav>
+    <div id="content" style="background-color: #f7f5f7; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <h2><em>Admin Dashboard</em></h2>
+    </div>
+</section>

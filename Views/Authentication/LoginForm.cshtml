@@ -2,13 +2,14 @@
     ViewBag.Title = "Login";
 }
 
-<form action="@Url.Action("HandleLogin", "Authentication")" method="post" style="display: flex; flex-direction: column; justify-content: center; align-items: center; width: 50%; height: 50%; margin: auto; border: 1px solid black; padding: 20px;">
-    <input type="email" name="email" placeholder="Enter your email" style="margin: 10px 0; padding: 10px; width: 80%; border: 1px solid black;" required />
-    <input type="password" name="password" placeholder="Enter your password" style="margin: 10px 0; padding: 10px; width: 80%; border: 1px solid black;" required minlength="6" maxlength="20" />
-    <button type="submit" style="margin: 10px 0; padding: 10px 20px; background-color: black; color: white; border: none;">Submit</button>
+<form action="@Url.Action("HandleLogin", "Authentication")" method="post" style="display: flex; flex-direction: column; justify-content: center; align-items: center; width: 50%; height: 50%; margin: auto; padding: 20px; background-color: white; border-radius: 10px; box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);">
+    <input type="email" name="email" placeholder="Enter your email" style="margin: 10px 0; padding: 10px; width: 80%; border: 1px solid black; border-radius: 5px;" required />
+    <input type="password" name="password" placeholder="Enter your password" style="margin: 10px 0; padding: 10px; width: 80%; border: 1px solid black; border-radius: 5px;" required minlength="6" maxlength="20" />
+    <button type="submit" style="margin: 10px 0; padding: 10px 20px; background-color: black; color: white; border: none; border-radius: 5px; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);">Submit</button>
 </form>
 
 @if (ViewBag.ErrorMessage != null)
 {
     <p style="color:red; text-align:center;">@ViewBag.ErrorMessage</p>
 }
+

@@ -50,7 +50,6 @@ namespace PMS.Controllers
         }
 
 
-
         // Authenticate the user by checking email and password from the database
         private dynamic AuthenticateUser(string email, string password)
         {
@@ -95,6 +94,16 @@ namespace PMS.Controllers
             return user;
         }
 
+
+        // Logout method to clear session and redirect to Admin Index
+        public ActionResult Logout()
+        {
+            // Clear the session
+            Session.Clear();
+
+            // Redirect to the Admin Index view
+            return RedirectToAction("Index", "Root");
+        }
 
     }
 }
