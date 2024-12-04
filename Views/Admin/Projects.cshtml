@@ -1,0 +1,217 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.Title = "Manage Projects";
+}
+
+<section style="width:100%; height:100%; display:grid; grid-template-rows:15% 5% 80%;">
+
+    <div style="display:flex; align-items:center; justify-content:center;">
+        <nav style="width: 95%; height: 60%; background-color: white; border-radius: 5px; display: flex; align-items: center;">
+            <a style="margin-left: 3%; height: 60%; width: 10%; display: flex; align-items: center; justify-content: center; border-radius: 5px; background-color: #2F2F31; color:white; cursor:pointer;">Add Project</a>
+            <a style="margin-left: 3%; height: 60%; width: 10%; display: flex; align-items: center; justify-content: center; border-radius: 5px; cursor: pointer;">All Projects</a>
+        </nav>
+    </div>
+
+    <h2 id="title-1" style="margin-left:2.5%;">Add a new project</h2>
+    <h2 id="title-2" style="margin-left:2.5%;">Manage projects</h2>
+
+    <div style="display:flex; align-items:center; justify-content:center;">
+        <section id="sub-section-1" style="width: 95%; height: 98%; background-color: white; border-radius: 5px; overflow-y:scroll;">
+            <h4 style="margin-left: 2.5%; margin-top: 2.5%;" id="sub-title">Project details</h4>
+            <hr style="margin-left: 2.5%; margin-right: 2.5%;" />
+
+            <form id="projectForm" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding:2.5%;">
+                <div style="display: flex; flex-direction: column; margin-bottom: 15px;">
+                    <label for="name" style="margin-bottom: 5px;">Project Name</label>
+                    <input type="text" id="name" required style="padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 16px;">
+                </div>
+                <div style="display: flex; flex-direction: column; margin-bottom: 15px;">
+                    <label for="description" style="margin-bottom: 5px;">Description</label>
+                    <textarea id="description" required style="padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 16px; min-height: 100px;"></textarea>
+                </div>
+                <div style="display: flex; flex-direction: column; margin-bottom: 15px;">
+                    <label for="expectedEndDate" style="margin-bottom: 5px;">Expected End Date</label>
+                    <input type="date" id="expectedEndDate" required style="padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 16px;">
+                </div>
+                <div style="display: flex; flex-direction: column; margin-bottom: 15px;">
+                    <label for="status" style="margin-bottom: 5px;">Status</label>
+                    <select id="status" required style="padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 16px;">
+                        <option value="">Select Status</option>
+                        <option value="Not Started">Not Started</option>
+                        <option value="In Progress">In Progress</option>
+                        <option value="Completed">Completed</option>
+                        <option value="On Hold">On Hold</option>
+                    </select>
+                </div>
+                <div style="display: flex; flex-direction: column; margin-bottom: 15px;">
+                    <label for="priority" style="margin-bottom: 5px;">Priority</label>
+                    <select id="priority" required style="padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 16px;">
+                        <option value="">Select Priority</option>
+                        <option value="High">High</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Low">Low</option>
+                        <option value="Urgent">Urgent</option>
+                    </select>
+                </div>
+                <div style="display: flex; flex-direction: column; margin-bottom: 15px;">
+                    <label for="budget" style="margin-bottom: 5px;">Budget</label>
+                    <input type="number" id="budget" required style="padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 16px;">
+                </div>
+                <div style="display: flex; flex-direction: column; margin-bottom: 15px;">
+                    <label for="client" style="margin-bottom: 5px;">Client</label>
+                    <select id="client" required style="padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 16px;">
+                        <option value="">Select Client</option>
+                        <option value="client1">Client 1</option>
+                        <option value="client2">Client 2</option>
+                        <option value="client3">Client 3</option>
+                    </select>
+                </div>
+                <div style="display: flex; flex-direction: column; margin-bottom: 15px;">
+                    <label for="manager" style="margin-bottom: 5px;">Project Manager</label>
+                    <select id="manager" required style="padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 16px;">
+                        <option value="">Select Manager</option>
+                        <option value="manager1">Manager 1</option>
+                        <option value="manager2">Manager 2</option>
+                        <option value="manager3">Manager 3</option>
+                    </select>
+                </div>
+                <div style="display: flex; flex-direction: column; margin-bottom: 15px;">
+                    <label for="team" style="margin-bottom: 5px;">Team</label>
+                    <select id="team" required style="padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 16px;">
+                        <option value="">Select Team</option>
+                        <option value="team1">Team 1</option>
+                        <option value="team2">Team 2</option>
+                        <option value="team3">Team 3</option>
+                    </select>
+                </div>
+
+                <!-- Add button -->
+                <div style="grid-column: 1 / -1; display: flex; justify-content: center; margin-top: 20px;">
+                    <button type="submit" style="background-color: #333; color: white; padding: 10px 40px; border: none; border-radius: 6px; font-size: 16px; cursor: pointer;">Add</button>
+                </div>
+            </form>
+
+        </section>
+
+        <section id="sub-section-2" style="width: 95%; height: 98%; background-color: white; border-radius: 5px; display: none;">
+            <h4 style="margin-left: 2.5%; margin-top: 2.5%;" id="sub-title-1">Project List</h4>
+            <hr style="margin-left: 2.5%; margin-right: 2.5%;" />
+            <div>
+                <table style="border-collapse: collapse; width: 100%; font-family: Arial, sans-serif;">
+                    <thead>
+                        <tr>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">No.</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Project Name</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Description</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">End Date</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Status</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Priority</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Budget</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Client</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Manager</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Team</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Operation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @*Dummy data row
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">1</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">E-commerce Platform</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Full-scale e-commerce website</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">2024-12-31</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">In Progress</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">High</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">100,000</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Client 1</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Manager 1</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Team 1</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;"><a>Update</a> <a>Delete</a></td>
+                            </tr>*@
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </div>
+
+</section>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Navigation and Section Toggle
+        const $addProjectLink = $('a:contains("Add Project")');
+        const $allProjectsLink = $('a:contains("All Projects")');
+        const $subSection1 = $('#sub-section-1');
+        const $subSection2 = $('#sub-section-2');
+        const $title1 = $('#title-1');
+        const $title2 = $('#title-2');
+        const $subTitle1 = $('#sub-title-1');
+        const $hr = $subTitle1.next('hr');
+
+        // Initialize with Add Project section visible
+        $subSection1.show();
+        $subSection2.hide();
+        $title1.show();
+        $title2.hide();
+
+        $addProjectLink.click(function (e) {
+            e.preventDefault();
+            toggleSection('add');
+        });
+
+        $allProjectsLink.click(function (e) {
+            e.preventDefault();
+            toggleSection('all');
+        });
+
+        function toggleSection(section) {
+            if (section === 'add') {
+                $addProjectLink.css({ 'background-color': '#2F2F31', color: 'white' });
+                $allProjectsLink.css({ 'background-color': 'white', color: 'black' });
+                $subSection1.show();
+                $subSection2.hide();
+                $title1.show();
+                $title2.hide();
+                $subTitle1.show();
+                $hr.show();
+            } else if (section === 'all') {
+                $allProjectsLink.css({ 'background-color': '#2F2F31', color: 'white' });
+                $addProjectLink.css({ 'background-color': 'white', color: 'black' });
+                $subSection1.hide();
+                $subSection2.show();
+                $title1.hide();
+                $title2.show();
+                $subTitle1.hide();
+                $hr.hide();
+            }
+        }
+
+        // Optional: Form submission handler
+        $('#projectForm').on('submit', function (event) {
+            event.preventDefault();
+            console.log('Project Form submitted');
+
+            // Get form values
+            const projectData = {
+                name: $('#name').val(),
+                description: $('#description').val(),
+                expectedEndDate: $('#expectedEndDate').val(),
+                status: $('#status').val(),
+                priority: $('#priority').val(),
+                budget: $('#budget').val(),
+                client: $('#client').val(),
+                manager: $('#manager').val(),
+                team: $('#team').val()
+            };
+
+            // Here you would typically send the data to a server
+            // For now, we'll just log the values
+            console.log(projectData);
+
+            // Optional: Reset form after submission
+            this.reset();
+        });
+    });
+</script>

@@ -1,0 +1,250 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.Title = "Manage Users";
+}
+
+<section style="width:100%; height:100%; display:grid; grid-template-rows:15% 5% 80%;">
+
+    <div style="display:flex; align-items:center; justify-content:center;">
+        <nav style="width: 95%; height: 60%; background-color: white; border-radius: 5px; display: flex; align-items: center;">
+            <a style="margin-left: 3%; height: 60%; width: 10%; display: flex; align-items: center; justify-content: center; border-radius: 5px; background-color: #2F2F31; color:white; cursor:pointer;">Add Users</a>
+            <a style="margin-left: 3%; height: 60%; width: 10%; display: flex; align-items: center; justify-content: center; border-radius: 5px; cursor: pointer;">All Users</a>
+        </nav>
+    </div>
+
+    <h2 id="title-1" style="margin-left:2.5%;">Add a new user</h2>
+    <h2 id="title-2" style="margin-left:2.5%;">Manage system users</h2>
+
+    <div style="display:flex; align-items:center; justify-content:center;">
+        <section id="sub-section-1" style="width: 95%; height: 98%; background-color: white; border-radius: 5px; overflow-y:scroll;">
+            <h4 style="margin-left: 2.5%; margin-top: 2.5%;" id="sub-title">User details</h4>
+            <hr style="margin-left: 2.5%; margin-right: 2.5%;" />
+
+            <form id="userForm" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding:2.5%;">
+                <div style="display: flex; flex-direction: column; margin-bottom: 15px;">
+                    <label for="email" style="margin-bottom: 5px;">Email</label>
+                    <input type="email" id="email" required style="padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 16px;">
+                </div>
+                <div style="display: flex; flex-direction: column; margin-bottom: 15px;">
+                    <label for="password" style="margin-bottom: 5px;">Password</label>
+                    <input type="password" id="password" required style="padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 16px;">
+                </div>
+                <div style="display: flex; flex-direction: column; margin-bottom: 15px;">
+                    <label for="username" style="margin-bottom: 5px;">User name</label>
+                    <input type="text" id="username" required style="padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 16px;">
+                </div>
+                <div style="display: flex; flex-direction: column; margin-bottom: 15px;">
+                    <label for="usertype" style="margin-bottom: 5px;">User type</label>
+                    <select id="usertype" required style="padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 16px;">
+                        <option value="">Select user type</option>
+                        <option value="admin">Admin</option>
+                        <option value="manager">Manager</option>
+                        <option value="team-member">Team Member</option>
+                    </select>
+                </div>
+                <div id="dynamicFields" style="grid-column: 1 / -1;"></div>
+
+                <!-- Add button -->
+                <div style="grid-column: 1 / -1; display: flex; justify-content: center; margin-top: 20px;">
+                    <button type="submit" style="background-color: #333; color: white; padding: 10px 40px; border: none; border-radius: 6px; font-size: 16px; cursor: pointer;">Add</button>
+                </div>
+            </form>
+
+        </section>
+
+        <section id="sub-section-2" style="width: 95%; height: 98%; background-color: white; border-radius: 5px; display: none;">
+            <h4 style="margin-left: 2.5%; margin-top: 2.5%;" id="sub-title-1">Basic details</h4>
+            <hr style="margin-left: 2.5%; margin-right: 2.5%;" />
+            <div>
+                <table style="border-collapse: collapse; width: 100%; font-family: Arial, sans-serif;">
+                    <thead>
+                        <tr>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">No.</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">User name</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Email</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">password</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">User type</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">ProfilePic Url</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Operation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @*Dummy data row
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 8px;">1</td>
+                            <td style="border: 1px solid #ddd; padding: 8px;">Ali</td>
+                            <td style="border: 1px solid #ddd; padding: 8px;">ali@mail</td>
+                            <td style="border: 1px solid #ddd; padding: 8px;">xyz</td>
+                            <td style="border: 1px solid #ddd; padding: 8px;">manager</td>
+                            <td style="border: 1px solid #ddd; padding: 8px;">https://pic....</td>
+                            <td style="border: 1px solid #ddd; padding: 8px;"><a>Update</a> <a>Delete</a></td>
+                        </tr>*@
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </div>
+
+</section>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Navigation and Section Toggle
+        const $addUserLink = $('a:contains("Add Users")');
+        const $allUsersLink = $('a:contains("All Users")');
+        const $subSection1 = $('#sub-section-1');
+        const $subSection2 = $('#sub-section-2');
+        const $title1 = $('#title-1');
+        const $title2 = $('#title-2');
+        const $subTitle1 = $('#sub-title-1');
+        const $hr = $subTitle1.next('hr');
+
+        // Initialize with Add Users section visible
+        $subSection1.show();
+        $subSection2.hide();
+        $title1.show();
+        $title2.hide();
+
+        $addUserLink.click(function (e) {
+            e.preventDefault();
+            toggleSection('add');
+        });
+
+        $allUsersLink.click(function (e) {
+            e.preventDefault();
+            toggleSection('all');
+        });
+
+        function toggleSection(section) {
+            if (section === 'add') {
+                $addUserLink.css({ 'background-color': '#2F2F31', color: 'white' });
+                $allUsersLink.css({ 'background-color': 'white', color: 'black' });
+                $subSection1.show();
+                $subSection2.hide();
+                $title1.show();
+                $title2.hide();
+                $subTitle1.show();
+                $hr.show();
+            } else if (section === 'all') {
+                $allUsersLink.css({ 'background-color': '#2F2F31', color: 'white' });
+                $addUserLink.css({ 'background-color': 'white', color: 'black' });
+                $subSection1.hide();
+                $subSection2.show();
+                $title1.hide();
+                $title2.show();
+                $subTitle1.hide();
+                $hr.hide();
+            }
+        }
+
+        // Dynamic Fields for User Type
+        const $userTypeSelect = $('#usertype');
+        const $dynamicFields = $('#dynamicFields');
+
+        $userTypeSelect.on('change', updateForm);
+
+        function updateForm() {
+            const userType = $userTypeSelect.val();
+            $dynamicFields.empty();
+
+            const fieldStyle = 'display: flex; flex-direction: column; margin-bottom: 15px;';
+            const labelStyle = 'margin-bottom: 5px;';
+            const inputStyle = 'padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 16px;';
+
+            if (userType === 'admin') {
+                $dynamicFields.append(`
+                <div style="${fieldStyle}">
+                    <label for="adminType" style="${labelStyle}">Admin Type</label>
+                    <select id="adminType" required style="${inputStyle}">
+                        <option value="primary">Primary</option>
+                        <option value="secondary">Secondary</option>
+                    </select>
+                </div>
+                <div style="${fieldStyle}">
+                    <label for="roleDescription" style="${labelStyle}">Role Description</label>
+                    <input type="text" id="roleDescription" required style="${inputStyle}">
+                </div>
+            `);
+            } else if (userType === 'manager') {
+                $dynamicFields.append(`
+                <div style="${fieldStyle}">
+                    <label for="domain" style="${labelStyle}">Domain</label>
+                    <input type="text" id="domain" required style="${inputStyle}">
+                </div>
+                <div style="${fieldStyle}">
+                    <label for="experience" style="${labelStyle}">Experience in Years</label>
+                    <input type="number" id="experience" required style="${inputStyle}">
+                </div>
+                <div style="${fieldStyle}">
+                    <label for="yearlyPay" style="${labelStyle}">Yearly Pay</label>
+                    <input type="number" id="yearlyPay" required style="${inputStyle}">
+                </div>
+                <div style="${fieldStyle}">
+                    <label for="department" style="${labelStyle}">Department</label>
+                    <select id="department" required style="${inputStyle}">
+                        <option value="department1">Department 1</option>
+                        <option value="department2">Department 2</option>
+                    </select>
+                </div>
+            `);
+            } else if (userType === 'team-member') {
+                $dynamicFields.append(`
+                <div style="${fieldStyle}">
+                    <label for="rank" style="${labelStyle}">Rank</label>
+                    <input type="number" id="rank" required style="${inputStyle}">
+                </div>
+                <div style="${fieldStyle}">
+                    <label for="monthlyPay" style="${labelStyle}">Monthly Pay</label>
+                    <input type="number" id="monthlyPay" required style="${inputStyle}">
+                </div>
+                <div style="${fieldStyle}">
+                    <label for="workHours" style="${labelStyle}">Work Hours/Week</label>
+                    <input type="number" id="workHours" required style="${inputStyle}">
+                </div>
+                <div style="${fieldStyle}">
+                    <label for="teamMemberDepartment" style="${labelStyle}">Department</label>
+                    <select id="teamMemberDepartment" required style="${inputStyle}">
+                        <option value="department1">Department 1</option>
+                        <option value="department2">Department 2</option>
+                    </select>
+                </div>
+                <div style="${fieldStyle}">
+                    <label for="manager" style="${labelStyle}">Manager</label>
+                    <select id="manager" required style="${inputStyle}">
+                        <option value="manager1">Manager 1</option>
+                        <option value="manager2">Manager 2</option>
+                    </select>
+                </div>
+                <div style="${fieldStyle}">
+                    <label for="team" style="${labelStyle}">Team</label>
+                    <select id="team" required style="${inputStyle}">
+                        <option value="team1">Team 1</option>
+                        <option value="team2">Team 2</option>
+                    </select>
+                </div>
+            `);
+            }
+        }
+
+        // Optional: Form submission handler
+        $('#userForm').on('submit', function (event) {
+            event.preventDefault();
+            console.log('Form submitted');
+        });
+
+        // User type dynamic fields (legacy code, kept for reference)
+        $('#userType').change(function () {
+            const userType = $(this).val();
+            $('#admin-fields, #manager-fields, #teamMember-fields').hide();
+            if (userType === 'admin') {
+                $('#admin-fields').show();
+            } else if (userType === 'manager') {
+                $('#manager-fields').show();
+            } else if (userType === 'teamMember') {
+                $('#teamMember-fields').show();
+            }
+        });
+    });
+</script>

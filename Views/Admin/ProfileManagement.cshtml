@@ -1,0 +1,45 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.Title = "Update Profile";
+}
+
+<section style="width:100%; height:100%; display:grid; grid-template-rows:15% 5% 80%;">
+
+    <div style="display:flex; align-items:center; justify-content:center;">
+        <nav style="width: 95%; height: 60%; background-color: white; border-radius: 5px; display: flex; align-items: center;">
+            <a style="margin-left: 3%; height: 60%; width: 10%; display: flex; align-items: center; justify-content: center; border-radius: 5px; background-color: #2F2F31; color:white; cursor:pointer;">Update</a>
+        </nav>
+    </div>
+
+    <h2 id="title-1" style="margin-left:2.5%;">Update your profile</h2>
+
+    <div style="display:flex; align-items:center; justify-content:center;">
+
+        <section id="sub-section-1" style="width: 95%; height: 98%; background-color: white; border-radius: 5px; overflow-y:scroll;">
+            <h4 style="margin-left: 2.5%; margin-top: 2.5%;" id="sub-title">profile details</h4>
+            <hr style="margin-left: 2.5%; margin-right: 2.5%;" />
+
+            <form id="profileForm" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding:2.5%;">
+                <div style="display: flex; flex-direction: column; margin-bottom: 15px;">
+                    <label for="email" style="margin-bottom: 5px;">Email</label>
+                    <input type="email" id="email" required style="padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 16px;">
+                </div>
+                <div style="display: flex; flex-direction: column; margin-bottom: 15px;">
+                    <label for="password" style="margin-bottom: 5px;">Password</label>
+                    <input type="password" id="password" required style="padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 16px;">
+                </div>
+                <div style="display: flex; flex-direction: column; margin-bottom: 15px;">
+                    <label for="name" style="margin-bottom: 5px;">Name</label>
+                    <input type="text" id="name" required style="padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 16px;">
+                </div>
+
+
+                <div style="grid-column: 1 / -1; display: flex; justify-content: center; margin-top: 20px;">
+                    <button type="submit" style="background-color: #333; color: white; padding: 10px 40px; border: none; border-radius: 6px; font-size: 16px; cursor: pointer;">Update</button>
+                </div>
+            </form>
+        </section>
+
+    </div>
+
+</section>

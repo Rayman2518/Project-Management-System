@@ -32,7 +32,7 @@ namespace PMS.Controllers
                 // Role-based routing
                 if (user.UserType == "admin")
                 {
-                    return RedirectToAction("Index", "Admin");
+                    return RedirectToAction("Users", "Admin");
                 }
                 else if (user.UserType == "manager")
                 {
@@ -48,7 +48,6 @@ namespace PMS.Controllers
             ViewBag.ErrorMessage = "Invalid email or password.";
             return View("LoginForm");  // Make sure it returns a view in case of failure
         }
-
 
         // Authenticate the user by checking email and password from the database
         private dynamic AuthenticateUser(string email, string password)
@@ -93,7 +92,6 @@ namespace PMS.Controllers
 
             return user;
         }
-
 
         // Logout method to clear session and redirect to Admin Index
         public ActionResult Logout()
