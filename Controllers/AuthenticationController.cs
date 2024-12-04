@@ -36,11 +36,11 @@ namespace PMS.Controllers
                 }
                 else if (user.UserType == "manager")
                 {
-                    return RedirectToAction("Index", "Manager");
+                    return RedirectToAction("Projects", "Manager");
                 }
                 else if (user.UserType == "teamMember")
                 {
-                    return RedirectToAction("Index", "TeamMember");
+                    return RedirectToAction("Projects", "TeamMember");
                 }
             }
 

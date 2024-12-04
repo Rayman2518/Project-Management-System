@@ -1,0 +1,47 @@
+﻿@{
+    Layout = "~/Views/Shared/_TeamMember.cshtml";
+    ViewBag.Title = "View Projects";
+}
+
+<section style="width:100%; height:100%; display:grid; grid-template-rows:15% 5% 80%;">
+
+    <div style="display:flex; align-items:center; justify-content:center;">
+        <nav style="width: 95%; height: 60%; background-color: white; border-radius: 5px; display: flex; align-items: center;">
+            <a style="margin-left: 3%; height: 60%; width: 10%; display: flex; align-items: center; justify-content: center; border-radius: 5px; background-color: #2F2F31; color:white; cursor:pointer;">All Projects</a>
+        </nav>
+    </div>
+
+    <h2 id="title-1" style="margin-left:2.5%;">Below are your active projects</h2>
+
+    <div style="display:flex; align-items:center; justify-content:center;">
+
+        <section id="sub-section-2" style="width: 95%; height: 98%; background-color: white; border-radius: 5px;">
+            <div>
+                <table style="border-collapse: collapse; width: 100%; font-family: Arial, sans-serif;">
+                    <thead>
+                        <tr>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">No.</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Project Name</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Description</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Start Date</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">End Date</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Status</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Priority</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Manager</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Team</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @*Dummy data row
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">1</td>
+                            other values here 
+                            </tr>*@
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </div>
+
+</section>

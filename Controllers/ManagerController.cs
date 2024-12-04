@@ -8,10 +8,35 @@ namespace PMS.Controllers
 {
     public class ManagerController : Controller
     {
-        // GET: Manager
-        public ActionResult Index()
+    
+        public ActionResult Projects()
         {
-            return View();
+            return View("Projects");
+        }
+
+        public ActionResult Teams()
+        {
+            return View("Teams");
+        }
+
+        public ActionResult Leads()
+        {
+            return View("Leads");
+        }
+
+        public ActionResult Tasks()
+        {
+            return View("Tasks");
+        }
+
+        public ActionResult Reports()
+        {
+            return View("Reports");
+        }
+
+        public ActionResult ProfileManagement()
+        {
+            return View("ProfileManagement");
         }
     }
 }

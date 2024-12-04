@@ -1,0 +1,197 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_ManagerLayout.cshtml";
+    ViewBag.Title = "Manage Leads";
+}
+
+<section style="width:100%; height:100%; display:grid; grid-template-rows:15% 5% 80%;">
+
+    <div style="display:flex; align-items:center; justify-content:center;">
+        <nav style="width: 95%; height: 60%; background-color: white; border-radius: 5px; display: flex; align-items: center;">
+            <a style="margin-left: 3%; height: 60%; width: 10%; display: flex; align-items: center; justify-content: center; border-radius: 5px; background-color: #2F2F31; color:white; cursor:pointer;">Add Lead</a>
+            <a style="margin-left: 3%; height: 60%; width: 10%; display: flex; align-items: center; justify-content: center; border-radius: 5px; cursor: pointer;">All Leads</a>
+        </nav>
+    </div>
+
+    <h2 id="title-1" style="margin-left:2.5%;">Add a new lead</h2>
+    <h2 id="title-2" style="margin-left:2.5%;">Manage leads</h2>
+
+    <div style="display:flex; align-items:center; justify-content:center;">
+        <section id="sub-section-1" style="width: 95%; height: 98%; background-color: white; border-radius: 5px; overflow-y:scroll;">
+            <h4 style="margin-left: 2.5%; margin-top: 2.5%;" id="sub-title">Lead details</h4>
+            <hr style="margin-left: 2.5%; margin-right: 2.5%;" />
+
+            <form id="leadForm" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding:2.5%;">
+                <div style="display: flex; flex-direction: column; margin-bottom: 15px;">
+                    <label for="name" style="margin-bottom: 5px;">Lead Name</label>
+                    <input type="text" id="name" required style="padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 16px;">
+                </div>
+                <div style="display: flex; flex-direction: column; margin-bottom: 15px;">
+                    <label for="description" style="margin-bottom: 5px;">Description</label>
+                    <textarea id="description" required style="padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 16px; min-height: 100px;"></textarea>
+                </div>
+                <div style="display: flex; flex-direction: column; margin-bottom: 15px;">
+                    <label for="manager" style="margin-bottom: 5px;">Manager</label>
+                    <select id="manager" required style="padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 16px;">
+                        <option value="">Select Manager</option>
+                        <option value="manager1">John Doe</option>
+                        <option value="manager2">Jane Smith</option>
+                        <option value="manager3">Mike Johnson</option>
+                    </select>
+                </div>
+                <div style="display: flex; flex-direction: column; margin-bottom: 15px;">
+                    <label for="status" style="margin-bottom: 5px;">Status</label>
+                    <select id="status" required style="padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 16px;">
+                        <option value="">Select Status</option>
+                        <option value="Open">Open</option>
+                        <option value="Closed">Closed</option>
+                        <option value="In Progress">In Progress</option>
+                        <option value="Converted">Converted</option>
+                        <option value="Contacted">Contacted</option>
+                        <option value="Follow-up Needed">Follow-up Needed</option>
+                    </select>
+                </div>
+                <div style="display: flex; flex-direction: column; margin-bottom: 15px;">
+                    <label for="followUpDate" style="margin-bottom: 5px;">Follow-up Date</label>
+                    <input type="date" id="followUpDate" style="padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 16px;">
+                </div>
+                <div style="display: flex; flex-direction: column; margin-bottom: 15px;">
+                    <label for="priority" style="margin-bottom: 5px;">Priority</label>
+                    <select id="priority" required style="padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 16px;">
+                        <option value="">Select Priority</option>
+                        <option value="High">High</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Low">Low</option>
+                        <option value="Urgent">Urgent</option>
+                        <option value="Normal">Normal</option>
+                    </select>
+                </div>
+                <div style="display: flex; flex-direction: column; margin-bottom: 15px;">
+                    <label for="source" style="margin-bottom: 5px;">Source</label>
+                    <input type="text" id="source" required style="padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 16px;">
+                </div>
+
+                <!-- Add button -->
+                <div style="grid-column: 1 / -1; display: flex; justify-content: center; margin-top: 20px;">
+                    <button type="submit" style="background-color: #333; color: white; padding: 10px 40px; border: none; border-radius: 6px; font-size: 16px; cursor: pointer;">Add</button>
+                </div>
+            </form>
+
+        </section>
+
+        <section id="sub-section-2" style="width: 95%; height: 98%; background-color: white; border-radius: 5px; display: none;">
+            <h4 style="margin-left: 2.5%; margin-top: 2.5%;" id="sub-title-1">Lead List</h4>
+            <hr style="margin-left: 2.5%; margin-right: 2.5%;" />
+            <div>
+                <table style="border-collapse: collapse; width: 100%; font-family: Arial, sans-serif;">
+                    <thead>
+                        <tr>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">No.</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Name</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Description</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Manager</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Status</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Follow-up Date</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Priority</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Source</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Operation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @*Dummy data row
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">1</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Acme Corp</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Potential enterprise client</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">John Doe</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">In Progress</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">2024-02-15</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">High</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Web Conference</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;"><a>Update</a> <a>Delete</a></td>
+                            </tr>*@
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </div>
+
+</section>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Navigation and Section Toggle
+        const $addLeadLink = $('a:contains("Add Lead")');
+        const $allLeadsLink = $('a:contains("All Leads")');
+        const $subSection1 = $('#sub-section-1');
+        const $subSection2 = $('#sub-section-2');
+        const $title1 = $('#title-1');
+        const $title2 = $('#title-2');
+        const $subTitle1 = $('#sub-title-1');
+        const $hr = $subTitle1.next('hr');
+
+        // Initialize with Add Lead section visible
+        $subSection1.show();
+        $subSection2.hide();
+        $title1.show();
+        $title2.hide();
+
+        $addLeadLink.click(function (e) {
+            e.preventDefault();
+            toggleSection('add');
+        });
+
+        $allLeadsLink.click(function (e) {
+            e.preventDefault();
+            toggleSection('all');
+        });
+
+        function toggleSection(section) {
+            if (section === 'add') {
+                $addLeadLink.css({ 'background-color': '#2F2F31', color: 'white' });
+                $allLeadsLink.css({ 'background-color': 'white', color: 'black' });
+                $subSection1.show();
+                $subSection2.hide();
+                $title1.show();
+                $title2.hide();
+                $subTitle1.show();
+                $hr.show();
+            } else if (section === 'all') {
+                $allLeadsLink.css({ 'background-color': '#2F2F31', color: 'white' });
+                $addLeadLink.css({ 'background-color': 'white', color: 'black' });
+                $subSection1.hide();
+                $subSection2.show();
+                $title1.hide();
+                $title2.show();
+                $subTitle1.hide();
+                $hr.hide();
+            }
+        }
+
+        // Optional: Form submission handler
+        $('#leadForm').on('submit', function (event) {
+            event.preventDefault();
+            console.log('Lead Form submitted');
+
+            // Get form values
+            const leadData = {
+                name: $('#name').val(),
+                description: $('#description').val(),
+                manager: $('#manager').val(),
+                status: $('#status').val(),
+                followUpDate: $('#followUpDate').val(),
+                priority: $('#priority').val(),
+                source: $('#source').val()
+            };
+
+            // Here you would typically send the data to a server
+            // For now, we'll just log the values
+            console.log(leadData);
+
+            // Optional: Reset form after submission
+            this.reset();
+        });
+    });
+</script>

@@ -14,7 +14,6 @@ namespace PMS.Controllers
             return View("Users"); 
         }
 
-        
         public ActionResult Departments()
         {
             return View("Departments");  
@@ -50,10 +49,6 @@ namespace PMS.Controllers
         {
             return View("ProfileManagement");
         }
-
-        
-
-
 
     }
 }
