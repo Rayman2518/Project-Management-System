@@ -70,15 +70,15 @@
                     </thead>
                     <tbody>
                         @*Dummy data row
-                        <tr>
-                            <td style="border: 1px solid #ddd; padding: 8px;">1</td>
-                            <td style="border: 1px solid #ddd; padding: 8px;">Ali</td>
-                            <td style="border: 1px solid #ddd; padding: 8px;">ali@mail</td>
-                            <td style="border: 1px solid #ddd; padding: 8px;">xyz</td>
-                            <td style="border: 1px solid #ddd; padding: 8px;">manager</td>
-                            <td style="border: 1px solid #ddd; padding: 8px;">https://pic....</td>
-                            <td style="border: 1px solid #ddd; padding: 8px;"><a>Update</a> <a>Delete</a></td>
-                        </tr>*@
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">1</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Ali</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">ali@mail</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">xyz</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">manager</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">https://pic....</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;"><a>Update</a> <a>Delete</a></td>
+                            </tr>*@
                     </tbody>
                 </table>
             </div>
@@ -107,16 +107,19 @@
         $title1.show();
         $title2.hide();
 
+        // Handle Add Users link click
         $addUserLink.click(function (e) {
             e.preventDefault();
             toggleSection('add');
         });
 
+        // Handle All Users link click
         $allUsersLink.click(function (e) {
             e.preventDefault();
             toggleSection('all');
         });
 
+        // Function to toggle between Add Users and All Users sections
         function toggleSection(section) {
             if (section === 'add') {
                 $addUserLink.css({ 'background-color': '#2F2F31', color: 'white' });
@@ -143,8 +146,10 @@
         const $userTypeSelect = $('#usertype');
         const $dynamicFields = $('#dynamicFields');
 
+        // Handle user type change
         $userTypeSelect.on('change', updateForm);
 
+        // Function to update form based on user type
         function updateForm() {
             const userType = $userTypeSelect.val();
             $dynamicFields.empty();
@@ -157,94 +162,179 @@
                 $dynamicFields.append(`
                 <div style="${fieldStyle}">
                     <label for="adminType" style="${labelStyle}">Admin Type</label>
-                    <select id="adminType" required style="${inputStyle}">
+                    <select id="adminType" name="AdminType" required style="${inputStyle}">
                         <option value="primary">Primary</option>
                         <option value="secondary">Secondary</option>
                     </select>
                 </div>
                 <div style="${fieldStyle}">
                     <label for="roleDescription" style="${labelStyle}">Role Description</label>
-                    <input type="text" id="roleDescription" required style="${inputStyle}">
+                    <input type="text" id="roleDescription" name="RoleDescription" required style="${inputStyle}">
                 </div>
             `);
             } else if (userType === 'manager') {
                 $dynamicFields.append(`
                 <div style="${fieldStyle}">
                     <label for="domain" style="${labelStyle}">Domain</label>
-                    <input type="text" id="domain" required style="${inputStyle}">
+                    <input type="text" id="domain" name="Domain" required style="${inputStyle}">
                 </div>
                 <div style="${fieldStyle}">
                     <label for="experience" style="${labelStyle}">Experience in Years</label>
-                    <input type="number" id="experience" required style="${inputStyle}">
+                    <input type="number" id="experience" name="Experience" required style="${inputStyle}">
                 </div>
                 <div style="${fieldStyle}">
                     <label for="yearlyPay" style="${labelStyle}">Yearly Pay</label>
-                    <input type="number" id="yearlyPay" required style="${inputStyle}">
+                    <input type="number" id="yearlyPay" name="YearlyPay" required style="${inputStyle}">
                 </div>
                 <div style="${fieldStyle}">
                     <label for="department" style="${labelStyle}">Department</label>
-                    <select id="department" required style="${inputStyle}">
-                        <option value="department1">Department 1</option>
-                        <option value="department2">Department 2</option>
+                    <select id="department" name="Department" required style="${inputStyle}">
+                        <!-- Department options will be populated via AJAX -->
                     </select>
                 </div>
             `);
+
+                // Fetch departments using AJAX
+                $.get("/Department/GetDepartments", function (data) {
+                    var departmentDropdown = $("#department");
+                    departmentDropdown.empty();
+                    departmentDropdown.append('<option value="">Select Department</option>');
+                    $.each(data, function (index, item) {
+                        departmentDropdown.append('<option value="' + item.Text + '">' + item.Text + '</option>');
+                    });
+                });
             } else if (userType === 'team-member') {
                 $dynamicFields.append(`
                 <div style="${fieldStyle}">
                     <label for="rank" style="${labelStyle}">Rank</label>
-                    <input type="number" id="rank" required style="${inputStyle}">
+                    <input type="number" id="rank" name="Rank" required style="${inputStyle}">
                 </div>
                 <div style="${fieldStyle}">
                     <label for="monthlyPay" style="${labelStyle}">Monthly Pay</label>
-                    <input type="number" id="monthlyPay" required style="${inputStyle}">
+                    <input type="number" id="monthlyPay" name="MonthlyPay" required style="${inputStyle}">
                 </div>
                 <div style="${fieldStyle}">
                     <label for="workHours" style="${labelStyle}">Work Hours/Week</label>
-                    <input type="number" id="workHours" required style="${inputStyle}">
+                    <input type="number" id="workHours" name="WorkHours" required style="${inputStyle}">
                 </div>
                 <div style="${fieldStyle}">
                     <label for="teamMemberDepartment" style="${labelStyle}">Department</label>
-                    <select id="teamMemberDepartment" required style="${inputStyle}">
-                        <option value="department1">Department 1</option>
-                        <option value="department2">Department 2</option>
+                    <select id="teamMemberDepartment" name="TeamMemberDepartment" required style="${inputStyle}">
+                        <!-- Department options will be populated via AJAX -->
                     </select>
                 </div>
                 <div style="${fieldStyle}">
                     <label for="manager" style="${labelStyle}">Manager</label>
-                    <select id="manager" required style="${inputStyle}">
-                        <option value="manager1">Manager 1</option>
-                        <option value="manager2">Manager 2</option>
+                    <select id="manager" name="Manager" required style="${inputStyle}">
+                        <!-- Manager options will be populated via AJAX -->
                     </select>
                 </div>
                 <div style="${fieldStyle}">
                     <label for="team" style="${labelStyle}">Team</label>
-                    <select id="team" required style="${inputStyle}">
-                        <option value="team1">Team 1</option>
-                        <option value="team2">Team 2</option>
+                    <select id="team" name="Team" required style="${inputStyle}">
+                        <!-- Team options will be populated via AJAX -->
                     </select>
                 </div>
             `);
+
+                // Fetch departments using AJAX
+                $.get("/Department/GetDepartments", function (data) {
+                    var departmentDropdown = $("#teamMemberDepartment");
+                    departmentDropdown.empty();
+                    departmentDropdown.append('<option value="">Select Department</option>');
+                    $.each(data, function (index, item) {
+                        departmentDropdown.append('<option value="' + item.Text + '">' + item.Text + '</option>');
+                    });
+                });
+
+                // Fetch managers using AJAX
+                $.get("/Manager/GetManagers", function (data) {
+                    var managerDropdown = $("#manager");
+                    managerDropdown.empty();
+                    managerDropdown.append('<option value="">Select Manager</option>');
+                    $.each(data, function (index, item) {
+                        managerDropdown.append('<option value="' + item.Text + '">' + item.Text + '</option>');
+                    });
+                });
+
+                // Fetch teams using AJAX
+                $.get("/Team/GetTeams", function (data) {
+                    var teamDropdown = $("#team");
+                    teamDropdown.empty();
+                    teamDropdown.append('<option value="">Select Team</option>');
+                    $.each(data, function (index, item) {
+                        teamDropdown.append('<option value="' + item.Text + '">' + item.Text + '</option>');
+                    });
+                });
             }
         }
 
-        // Optional: Form submission handler
+        // Form submission handler
         $('#userForm').on('submit', function (event) {
-            event.preventDefault();
-            console.log('Form submitted');
+
+            // Log form values to the console for debugging
+            console.log('UserType:', $('#usertype').val());
+            console.log('Email:', $('#email').val());
+            console.log('Password:', $('#password').val());
+            console.log('Username:', $('#username').val());
+
+            // Collect the common form data
+            var formData = {
+                userType: $('#usertype').val(),
+                email: $('#email').val(),
+                password: $('#password').val(),
+                username: $('#username').val()
+            };
+
+            // Add the manager-specific data only if the user type is 'manager'
+            if ($('#usertype').val() === 'manager') {
+                formData.domain = $('#domain').val();
+                formData.experience = $('#experience').val();
+                formData.yearlyPay = $('#yearlyPay').val();
+                formData.department = $('#department').val();
+
+                console.log('Domain:', formData.domain);
+                console.log('Experience (Years):', formData.experience);
+                console.log('Yearly Pay:', formData.yearlyPay);
+                console.log('Department:', formData.department);
+            }
+
+            // Add the team-member-specific data if the user type is 'team-member'
+            if (formData.userType === 'team-member') {
+                formData.rank = $('#rank').val();
+                formData.monthlyPay = $('#monthlyPay').val();
+                formData.workHours = $('#workHours').val();
+                formData.department = $('#teamMemberDepartment').val();
+                formData.manager = $('#manager').val();
+                formData.team = $('#team').val();
+
+                // Log team-member-specific fields to the console
+                console.log('Rank:', formData.rank);
+                console.log('Monthly Pay:', formData.monthlyPay);
+                console.log('Work Hours (Weekly):', formData.workHours);
+                console.log('Department (Team Member):', formData.department);
+                console.log('Manager:', formData.manager);
+                console.log('Team:', formData.team);
+            }
+
+            console.log('Form Data:', formData);
+
+            // Perform AJAX POST request to the server with form data
+            $.ajax({
+                url: '/Profile/AddProfile',  // The URL of your controller action
+                type: 'POST',
+                data: formData,  // Send the form data to the server
+                success: function (response) {
+                    console.log('Form successfully submitted!');
+                    // Handle success (you can redirect, show a message, etc.)
+                },
+                error: function (xhr, status, error) {
+                    console.log('Error occurred while submitting the form:', error);
+                    // Handle error (you can show an error message to the user)
+                }
+            });
         });
 
-        // User type dynamic fields (legacy code, kept for reference)
-        $('#userType').change(function () {
-            const userType = $(this).val();
-            $('#admin-fields, #manager-fields, #teamMember-fields').hide();
-            if (userType === 'admin') {
-                $('#admin-fields').show();
-            } else if (userType === 'manager') {
-                $('#manager-fields').show();
-            } else if (userType === 'teamMember') {
-                $('#teamMember-fields').show();
-            }
-        });
+
     });
 </script>
