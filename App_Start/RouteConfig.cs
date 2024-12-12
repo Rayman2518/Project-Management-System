@@ -13,10 +13,11 @@ namespace PMS
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            // Authentication related routes
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Root", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Root", action = "Index" }
             );
 
             routes.MapRoute(
@@ -26,16 +27,30 @@ namespace PMS
             );
 
             routes.MapRoute(
+                name: "HandleLogin",
+                url: "{controller}/{action}",
+                defaults: new { controller = "Authentication", action = "HandleLogin" }
+            );
+
+            routes.MapRoute(
                 name: "Logout",
                 url: "{controller}/{action}",
                 defaults: new { controller = "Authentication", action = "Logout" }
             );
 
+            // Admin related routes
             routes.MapRoute(
-                name: "HandleLogin",
-                url: "{controller}/{action}",
-                defaults: new { controller = "Authentication", action = "HandleLogin" }
-            );
+               name: "AdminUsers",
+               url: "{controller}/{action}",
+               defaults: new { controller = "Admin", action = "Users" }
+           );
+
+            routes.MapRoute(
+              name: "AdminDepartments",
+              url: "{controller}/{action}",
+              defaults: new { controller = "Admin", action = "Departments" }
+          );
+
 
         }
     }

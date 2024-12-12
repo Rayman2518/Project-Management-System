@@ -1,119 +1,171 @@
-﻿@{
-    ViewBag.Title = "Admin Dashboard";
-}
+﻿<!DOCTYPE html>
+<html lang="en">
 
-<style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/128/1659/1659067.png" />
+    <title>@ViewBag.Title - PMS</title>
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
-    html, body {
-        height: 100vh;
-        width: 100vw;
-        background-color: #f7f5f7;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-    .nav-item {
-        display: flex;
-        align-items: center;
-        justify-content: space-evenly;
-        height: 40px; /* Reduced height */
-        padding: 8px 0; /* Reduced padding for a more compact link */
-        width: 90%;
-        margin-bottom: 10px;
-        border-radius: 5px;
-        transition: background-color 0.3s;
-        cursor: pointer;
-        text-decoration: none; /* Remove underline */
-        color: inherit; /* Inherit text color */
-    }
-
-        .nav-item:hover {
+        html, body {
+            height: 100vh;
+            width: 100vw;
             background-color: #f7f5f7;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
-        /* Styling the <a> tag to remove default styles */
-        .nav-item a {
-            text-decoration: none; /* Ensure no underline */
-            color: inherit; /* Inherit color */
-            width: 100%; /* Make sure it covers the whole area */
-            height: 100%; /* Ensure the height is consistent */
-            display: flex; /* Align the content properly */
-            align-items: center; /* Vertically center the content */
-            justify-content: space-evenly; /* Horizontally center the content */
+        .layout {
+            display: grid;
+            grid-template-columns: 15% 85%;
+            height: 100%;
+            width: 100%;
         }
 
-    /* The logout item styling */
-    .logout {
-        display: flex;
-        align-items: center;
-        justify-content: space-evenly;
-        height: 50px;
-        width: 90%;
-        margin-bottom: 10px;
-        border-radius: 5px;
-        transition: background-color 0.3s;
-        cursor: pointer;
-    }
+        /* Sidebar Styles */
+        .sidebar {
+            background-color: #ffffff;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
 
-        .logout:hover {
+        .nav-links {
+            height: 80%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            height: 40px;
+            padding: 8px 0;
+            width: 90%;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+
+            .nav-item:hover {
+                background-color: #f7f5f7;
+            }
+
+            .nav-item img {
+                width: 24px;
+                height: 24px;
+            }
+
+        .logout-section {
+            height: 20%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logout {
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            height: 50px;
+            width: 90%;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+            color: black;
+        }
+
+            .logout:hover {
+                background-color: #f77d7e;
+            }
+
+            .logout img {
+                width: 24px;
+                height: 24px;
+            }
+
+        /* Content Styles */
+        .content {
             background-color: #f7f5f7;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
-</style>
+    </style>
+    <!-- Add jQuery and custom JS script -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<section style="display: grid; grid-template-columns: 15% 85%; height: 100%; width: 100%;">
-    <nav style="background-color: #ffffff; height: 100%; display: flex; flex-direction: column;">
-        <div id="main-navbar-options" style="height: 80%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-            <a href="@Url.Action("Users", "Admin")" class="nav-item">
-                <img src="https://cdn-icons-png.flaticon.com/128/681/681443.png" style="width: 24px; height: 24px;" />
-                <h3>Users</h3>
-            </a>
-            <a href="@Url.Action("Departments", "Admin")" class="nav-item">
-                <img src="https://cdn-icons-png.flaticon.com/128/1570/1570896.png" style="width: 24px; height: 24px;" />
-                <h3>Departments</h3>
-            </a>
-            <a href="@Url.Action("Projects", "Admin")" class="nav-item">
-                <img src="https://cdn-icons-png.flaticon.com/128/1383/1383970.png" style="width: 24px; height: 24px;" />
-                <h3>Projects</h3>
-            </a>
-            <a href="@Url.Action("Teams", "Admin")" class="nav-item">
-                <img src="https://cdn-icons-png.flaticon.com/128/3131/3131333.png" style="width: 24px; height: 24px;" />
-                <h3>Teams</h3>
-            </a>
-            <a href="@Url.Action("Leads", "Admin")" class="nav-item">
-                <img src="https://cdn-icons-png.flaticon.com/128/944/944022.png" style="width: 26px; height: 26px;" />
-                <h3>Leads</h3>
-            </a>
-            <a href="@Url.Action("Reports", "Admin")" class="nav-item">
-                <img src="https://cdn-icons-png.flaticon.com/128/1508/1508964.png" style="width: 24px; height: 24px;" />
-                <h3>Reports</h3>
-            </a>
-            <a href="@Url.Action("Tasks", "Admin")" class="nav-item">
-                <img src="https://cdn-icons-png.flaticon.com/128/1368/1368593.png" style="width: 24px; height: 24px;" />
-                <h3>Tasks</h3>
-            </a>
-            <a href="@Url.Action("ProfileManagement", "Admin")" class="nav-item">
-                <img src="https://cdn-icons-png.flaticon.com/128/456/456283.png" style="width: 24px; height: 24px;" />
-                <h3>Profile</h3>
-            </a>
-        </div>
+</head>
 
-        <div id="logout-div" style="height: 20%; display: flex; justify-content: center; align-items: center;">
-            <div class="logout">
-                <a href="@Url.Action("Logout", "Authentication")" style="display: flex; align-items: center; justify-content: space-evenly; text-decoration: none; color: inherit; width: 100%; height: 100%;">
-                    <img src="https://cdn-icons-png.flaticon.com/128/2529/2529508.png" style="width: 24px; height: 24px;" />
+<body>
+    <section class="layout">
+        <nav class="sidebar">
+            <div class="nav-links">
+                <a href="@Url.Action("Users", "Admin")" class="nav-item" aria-label="Users">
+                    <img src="https://cdn-icons-png.flaticon.com/128/681/681443.png" alt="Users Icon" />
+                    <h3>Users</h3>
+                </a>
+                <a href="@Url.Action("Create", "Department")" class="nav-item" aria-label="Departments">
+                    <img src="https://cdn-icons-png.flaticon.com/128/1570/1570896.png" alt="Departments Icon" />
+                    <h3>Departments</h3>
+                </a>
+                <a href="@Url.Action("Projects", "Admin")" class="nav-item" aria-label="Projects">
+                    <img src="https://cdn-icons-png.flaticon.com/128/1383/1383970.png" alt="Projects Icon" />
+                    <h3>Projects</h3>
+                </a>
+                <a href="@Url.Action("Teams", "Admin")" class="nav-item" aria-label="Teams">
+                    <img src="https://cdn-icons-png.flaticon.com/128/3131/3131333.png" alt="Teams Icon" />
+                    <h3>Teams</h3>
+                </a>
+                <a href="@Url.Action("Leads", "Admin")" class="nav-item" aria-label="Leads">
+                    <img src="https://cdn-icons-png.flaticon.com/128/944/944022.png" alt="Leads Icon" />
+                    <h3>Leads</h3>
+                </a>
+                <a href="@Url.Action("Reports", "Admin")" class="nav-item" aria-label="Reports">
+                    <img src="https://cdn-icons-png.flaticon.com/128/1508/1508964.png" alt="Reports Icon" />
+                    <h3>Reports</h3>
+                </a>
+                <a href="@Url.Action("Tasks", "Admin")" class="nav-item" aria-label="Tasks">
+                    <img src="https://cdn-icons-png.flaticon.com/128/1368/1368593.png" alt="Tasks Icon" />
+                    <h3>Tasks</h3>
+                </a>
+                <a href="@Url.Action("ProfileManagement", "Admin")" class="nav-item" aria-label="Profile">
+                    <img src="https://cdn-icons-png.flaticon.com/128/456/456283.png" alt="Profile Icon" />
+                    <h3>Profile</h3>
+                </a>
+            </div>
+
+            <div class="logout-section">
+                <a href="@Url.Action("Logout", "Authentication")" class="logout" aria-label="Logout">
+                    <img src="https://cdn-icons-png.flaticon.com/128/2529/2529508.png" alt="Logout Icon" />
                     <h3>Logout</h3>
                 </a>
             </div>
+        </nav>
+
+        <div class="content">
+            @RenderBody()
         </div>
-    </nav>
-    <div id="content" style="background-color: #f7f5f7; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-        @RenderBody()
-    </div>
-</section>
+    </section>
+</body>
+
+</html>

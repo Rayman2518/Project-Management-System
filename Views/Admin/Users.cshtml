@@ -5,6 +5,7 @@
 
 <section style="width:100%; height:100%; display:grid; grid-template-rows:15% 5% 80%;">
 
+    <!-- Navigation bar with Add Users and All Users links -->
     <div style="display:flex; align-items:center; justify-content:center;">
         <nav style="width: 95%; height: 60%; background-color: white; border-radius: 5px; display: flex; align-items: center;">
             <a style="margin-left: 3%; height: 60%; width: 10%; display: flex; align-items: center; justify-content: center; border-radius: 5px; background-color: #2F2F31; color:white; cursor:pointer;">Add Users</a>
@@ -12,14 +13,17 @@
         </nav>
     </div>
 
+    <!-- Titles for the sections -->
     <h2 id="title-1" style="margin-left:2.5%;">Add a new user</h2>
     <h2 id="title-2" style="margin-left:2.5%;">Manage system users</h2>
 
     <div style="display:flex; align-items:center; justify-content:center;">
+        <!-- Section for adding a new user -->
         <section id="sub-section-1" style="width: 95%; height: 98%; background-color: white; border-radius: 5px; overflow-y:scroll;">
             <h4 style="margin-left: 2.5%; margin-top: 2.5%;" id="sub-title">User details</h4>
             <hr style="margin-left: 2.5%; margin-right: 2.5%;" />
 
+            <!-- Form for adding a new user -->
             <form id="userForm" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding:2.5%;">
                 <div style="display: flex; flex-direction: column; margin-bottom: 15px;">
                     <label for="email" style="margin-bottom: 5px;">Email</label>
@@ -52,35 +56,89 @@
 
         </section>
 
-        <section id="sub-section-2" style="width: 95%; height: 98%; background-color: white; border-radius: 5px; display: none;">
-            <h4 style="margin-left: 2.5%; margin-top: 2.5%;" id="sub-title-1">Basic details</h4>
-            <hr style="margin-left: 2.5%; margin-right: 2.5%;" />
+        <!-- Section for managing existing users -->
+        <section id="sub-section-2" style="width: 95%; height: 98%; background-color: white; border-radius: 5px; display: none; overflow-y: scroll;">
+
             <div>
-                <table style="border-collapse: collapse; width: 100%; font-family: Arial, sans-serif;">
+                <!-- Navigation bar to select user details by User type -->
+
+                <nav id="inner-navbar" style="width: 100%; height: 60px; background-color: white; display: flex; align-items: center;">
+                    <a style="margin-left: 1%; margin-right: 3%; height: 60%; width: 10%; display: flex; align-items: center; justify-content: center; border-radius: 5px; background-color: #2F2F31; color: white; cursor: pointer;">Admins</a>
+                    <a style="margin-right: 3%; height: 60%; width: 10%; display: flex; align-items: center; justify-content: center; border-radius: 5px; background-color: #f7f5f7; cursor: pointer; ">Managers</a>
+                    <a style="margin-right: 3%; height: 60%; width: 10%; display: flex; align-items: center; justify-content: center; border-radius: 5px; background-color: #f7f5f7; cursor: pointer; ">Team members</a>
+                </nav>
+
+
+                <!-- Table for Admin details -->
+                <table id="all-admins" style="height: 90%; border-collapse: collapse; width: 100%; font-family: Arial, sans-serif;">
                     <thead>
                         <tr>
                             <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">No.</th>
                             <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">User name</th>
                             <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Email</th>
                             <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">password</th>
-                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">User type</th>
                             <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">ProfilePic Url</th>
-                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Operation</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Admin type</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Role description</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Operation</th>  @*this field will contain 2 links: delete and update*@
                         </tr>
                     </thead>
+
                     <tbody>
-                        @*Dummy data row
-                            <tr>
-                                <td style="border: 1px solid #ddd; padding: 8px;">1</td>
-                                <td style="border: 1px solid #ddd; padding: 8px;">Ali</td>
-                                <td style="border: 1px solid #ddd; padding: 8px;">ali@mail</td>
-                                <td style="border: 1px solid #ddd; padding: 8px;">xyz</td>
-                                <td style="border: 1px solid #ddd; padding: 8px;">manager</td>
-                                <td style="border: 1px solid #ddd; padding: 8px;">https://pic....</td>
-                                <td style="border: 1px solid #ddd; padding: 8px;"><a>Update</a> <a>Delete</a></td>
-                            </tr>*@
                     </tbody>
+
                 </table>
+
+
+                <!-- Table for Manager details -->
+                <table id="all-managers" style="display: none; border-collapse: collapse; width: 100%; font-family: Arial, sans-serif;">
+                    <thead>
+                        <tr>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">No.</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">User name</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Email</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">password</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">ProfilePic Url</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Domain</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Experience</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Pay/Year</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Department</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Operation</th> @*this field will contain 2 links: delete and update*@
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                    </tbody>
+
+                </table>
+
+
+                <!-- Table for Team Members details -->
+                <table id="all-teammembers" style="display: none; border-collapse: collapse; width: 100%; font-family: Arial, sans-serif;">
+                    <thead>
+                        <tr>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">No.</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">User name</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Email</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">password</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">ProfilePic Url</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Rank</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Work hrs/week</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Pay/Month</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Department</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Manager</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Team</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Operation</th> @*this field will contain 2 links: delete and update*@
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                    </tbody>
+
+                </table>
+
+
+
             </div>
         </section>
 
@@ -88,253 +146,4 @@
 
 </section>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(document).ready(function () {
-        // Navigation and Section Toggle
-        const $addUserLink = $('a:contains("Add Users")');
-        const $allUsersLink = $('a:contains("All Users")');
-        const $subSection1 = $('#sub-section-1');
-        const $subSection2 = $('#sub-section-2');
-        const $title1 = $('#title-1');
-        const $title2 = $('#title-2');
-        const $subTitle1 = $('#sub-title-1');
-        const $hr = $subTitle1.next('hr');
-
-        // Initialize with Add Users section visible
-        $subSection1.show();
-        $subSection2.hide();
-        $title1.show();
-        $title2.hide();
-
-        // Handle Add Users link click
-        $addUserLink.click(function (e) {
-            e.preventDefault();
-            toggleSection('add');
-        });
-
-        // Handle All Users link click
-        $allUsersLink.click(function (e) {
-            e.preventDefault();
-            toggleSection('all');
-        });
-
-        // Function to toggle between Add Users and All Users sections
-        function toggleSection(section) {
-            if (section === 'add') {
-                $addUserLink.css({ 'background-color': '#2F2F31', color: 'white' });
-                $allUsersLink.css({ 'background-color': 'white', color: 'black' });
-                $subSection1.show();
-                $subSection2.hide();
-                $title1.show();
-                $title2.hide();
-                $subTitle1.show();
-                $hr.show();
-            } else if (section === 'all') {
-                $allUsersLink.css({ 'background-color': '#2F2F31', color: 'white' });
-                $addUserLink.css({ 'background-color': 'white', color: 'black' });
-                $subSection1.hide();
-                $subSection2.show();
-                $title1.hide();
-                $title2.show();
-                $subTitle1.hide();
-                $hr.hide();
-            }
-        }
-
-        // Dynamic Fields for User Type
-        const $userTypeSelect = $('#usertype');
-        const $dynamicFields = $('#dynamicFields');
-
-        // Handle user type change
-        $userTypeSelect.on('change', updateForm);
-
-        // Function to update form based on user type
-        function updateForm() {
-            const userType = $userTypeSelect.val();
-            $dynamicFields.empty();
-
-            const fieldStyle = 'display: flex; flex-direction: column; margin-bottom: 15px;';
-            const labelStyle = 'margin-bottom: 5px;';
-            const inputStyle = 'padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 16px;';
-
-            if (userType === 'admin') {
-                $dynamicFields.append(`
-                <div style="${fieldStyle}">
-                    <label for="adminType" style="${labelStyle}">Admin Type</label>
-                    <select id="adminType" name="AdminType" required style="${inputStyle}">
-                        <option value="primary">Primary</option>
-                        <option value="secondary">Secondary</option>
-                    </select>
-                </div>
-                <div style="${fieldStyle}">
-                    <label for="roleDescription" style="${labelStyle}">Role Description</label>
-                    <input type="text" id="roleDescription" name="RoleDescription" required style="${inputStyle}">
-                </div>
-            `);
-            } else if (userType === 'manager') {
-                $dynamicFields.append(`
-                <div style="${fieldStyle}">
-                    <label for="domain" style="${labelStyle}">Domain</label>
-                    <input type="text" id="domain" name="Domain" required style="${inputStyle}">
-                </div>
-                <div style="${fieldStyle}">
-                    <label for="experience" style="${labelStyle}">Experience in Years</label>
-                    <input type="number" id="experience" name="Experience" required style="${inputStyle}">
-                </div>
-                <div style="${fieldStyle}">
-                    <label for="yearlyPay" style="${labelStyle}">Yearly Pay</label>
-                    <input type="number" id="yearlyPay" name="YearlyPay" required style="${inputStyle}">
-                </div>
-                <div style="${fieldStyle}">
-                    <label for="department" style="${labelStyle}">Department</label>
-                    <select id="department" name="Department" required style="${inputStyle}">
-                        <!-- Department options will be populated via AJAX -->
-                    </select>
-                </div>
-            `);
-
-                // Fetch departments using AJAX
-                $.get("/Department/GetDepartments", function (data) {
-                    var departmentDropdown = $("#department");
-                    departmentDropdown.empty();
-                    departmentDropdown.append('<option value="">Select Department</option>');
-                    $.each(data, function (index, item) {
-                        departmentDropdown.append('<option value="' + item.Text + '">' + item.Text + '</option>');
-                    });
-                });
-            } else if (userType === 'team-member') {
-                $dynamicFields.append(`
-                <div style="${fieldStyle}">
-                    <label for="rank" style="${labelStyle}">Rank</label>
-                    <input type="number" id="rank" name="Rank" required style="${inputStyle}">
-                </div>
-                <div style="${fieldStyle}">
-                    <label for="monthlyPay" style="${labelStyle}">Monthly Pay</label>
-                    <input type="number" id="monthlyPay" name="MonthlyPay" required style="${inputStyle}">
-                </div>
-                <div style="${fieldStyle}">
-                    <label for="workHours" style="${labelStyle}">Work Hours/Week</label>
-                    <input type="number" id="workHours" name="WorkHours" required style="${inputStyle}">
-                </div>
-                <div style="${fieldStyle}">
-                    <label for="teamMemberDepartment" style="${labelStyle}">Department</label>
-                    <select id="teamMemberDepartment" name="TeamMemberDepartment" required style="${inputStyle}">
-                        <!-- Department options will be populated via AJAX -->
-                    </select>
-                </div>
-                <div style="${fieldStyle}">
-                    <label for="manager" style="${labelStyle}">Manager</label>
-                    <select id="manager" name="Manager" required style="${inputStyle}">
-                        <!-- Manager options will be populated via AJAX -->
-                    </select>
-                </div>
-                <div style="${fieldStyle}">
-                    <label for="team" style="${labelStyle}">Team</label>
-                    <select id="team" name="Team" required style="${inputStyle}">
-                        <!-- Team options will be populated via AJAX -->
-                    </select>
-                </div>
-            `);
-
-                // Fetch departments using AJAX
-                $.get("/Department/GetDepartments", function (data) {
-                    var departmentDropdown = $("#teamMemberDepartment");
-                    departmentDropdown.empty();
-                    departmentDropdown.append('<option value="">Select Department</option>');
-                    $.each(data, function (index, item) {
-                        departmentDropdown.append('<option value="' + item.Text + '">' + item.Text + '</option>');
-                    });
-                });
-
-                // Fetch managers using AJAX
-                $.get("/Manager/GetManagers", function (data) {
-                    var managerDropdown = $("#manager");
-                    managerDropdown.empty();
-                    managerDropdown.append('<option value="">Select Manager</option>');
-                    $.each(data, function (index, item) {
-                        managerDropdown.append('<option value="' + item.Text + '">' + item.Text + '</option>');
-                    });
-                });
-
-                // Fetch teams using AJAX
-                $.get("/Team/GetTeams", function (data) {
-                    var teamDropdown = $("#team");
-                    teamDropdown.empty();
-                    teamDropdown.append('<option value="">Select Team</option>');
-                    $.each(data, function (index, item) {
-                        teamDropdown.append('<option value="' + item.Text + '">' + item.Text + '</option>');
-                    });
-                });
-            }
-        }
-
-        // Form submission handler
-        $('#userForm').on('submit', function (event) {
-
-            // Log form values to the console for debugging
-            console.log('UserType:', $('#usertype').val());
-            console.log('Email:', $('#email').val());
-            console.log('Password:', $('#password').val());
-            console.log('Username:', $('#username').val());
-
-            // Collect the common form data
-            var formData = {
-                userType: $('#usertype').val(),
-                email: $('#email').val(),
-                password: $('#password').val(),
-                username: $('#username').val()
-            };
-
-            // Add the manager-specific data only if the user type is 'manager'
-            if ($('#usertype').val() === 'manager') {
-                formData.domain = $('#domain').val();
-                formData.experience = $('#experience').val();
-                formData.yearlyPay = $('#yearlyPay').val();
-                formData.department = $('#department').val();
-
-                console.log('Domain:', formData.domain);
-                console.log('Experience (Years):', formData.experience);
-                console.log('Yearly Pay:', formData.yearlyPay);
-                console.log('Department:', formData.department);
-            }
-
-            // Add the team-member-specific data if the user type is 'team-member'
-            if (formData.userType === 'team-member') {
-                formData.rank = $('#rank').val();
-                formData.monthlyPay = $('#monthlyPay').val();
-                formData.workHours = $('#workHours').val();
-                formData.department = $('#teamMemberDepartment').val();
-                formData.manager = $('#manager').val();
-                formData.team = $('#team').val();
-
-                // Log team-member-specific fields to the console
-                console.log('Rank:', formData.rank);
-                console.log('Monthly Pay:', formData.monthlyPay);
-                console.log('Work Hours (Weekly):', formData.workHours);
-                console.log('Department (Team Member):', formData.department);
-                console.log('Manager:', formData.manager);
-                console.log('Team:', formData.team);
-            }
-
-            console.log('Form Data:', formData);
-
-            // Perform AJAX POST request to the server with form data
-            $.ajax({
-                url: '/Profile/AddProfile',  // The URL of your controller action
-                type: 'POST',
-                data: formData,  // Send the form data to the server
-                success: function (response) {
-                    console.log('Form successfully submitted!');
-                    // Handle success (you can redirect, show a message, etc.)
-                },
-                error: function (xhr, status, error) {
-                    console.log('Error occurred while submitting the form:', error);
-                    // Handle error (you can show an error message to the user)
-                }
-            });
-        });
-
-
-    });
-</script>
+<script src="~/Scripts/Users/userManagement.js"></script>
